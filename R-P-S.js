@@ -1,2 +1,3 @@
-var getComputerChoice = ['Rock', 'Paper', 'Scissors';
-var getComputerChoice = [Math.floor(Math.random()*things.length)];
+function getComputerChoice(); {
+   let randomChoice = Math.floor(Math.random() * getComputerChoice.length);
+}
