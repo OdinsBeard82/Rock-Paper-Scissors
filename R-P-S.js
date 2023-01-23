@@ -1,18 +1,20 @@
-const choices = ("rock", "paper", "scissors")
-function game(){ 
 
-}
-function computerChoice(){
-   return choices[Math.floor(Math.random() * choices.length)]
-}
+ const choices = ["rock", "paper", "scissors"];
 
-function playRound(){
-    const playerselection = 
-}
-function playerselection(){
+ function game() {
+    playRound();
+ }
 
-}
-function computerSelection(){
+function playRound() {
+   const playerSelection = playerChoice();
+   const computerSelection = ComputerChoice();
+  }
 
-}
+  function PlayerChoice() {
+   let input = prompt("Tyoe Rock, Paper, or Scissors");
+   input = input.toLowerCase();
+  }
 
+  function ComputerChoice(){
+    return choices[Math.floor(Math.random() * choices.length)]
+  }
