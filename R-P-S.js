@@ -1,10 +1,14 @@
 const resultDisplay = document.querySelector('#result')
 const choicesDisplay = document.querySelector('#choices')
-const choices = ["rock, paper, scissors"];
+const choices1Display = document.querySelector('#choices1')
+const choices = ["rock", "paper", "scissors"];
 
 const handleClick = (e) => {
-    getResults(e.target.innerHTML, choices[Math.floor(Math.random() * choices.length)])
+    getResults(e.target.innerHTML, getComputerChoice())
+}
 
+const getComputerChoice = () => {
+   return choices [Math.floor(Math.random() * choices.length)];
 }
 
 choices.forEach(choice => {
@@ -14,39 +18,43 @@ choices.forEach(choice => {
     choicesDisplay.appendChild(button)
 })
 
-const getResults = (userChoice, computerChoice) => {
-   switch (userChoice + computerChoice) {
+
+const getResults = (playerSelection, computerSelection) => {
+   const result = playRound(playerSelection, computerSelection);
+   resultDisplay.innerHTML = result;
+}
+   function playRound(playerSelection, computerSelection) {
+   switch (playerSelection + computerSelection) {
    case 'scissorspaper':
    case 'rockscissors':
    case 'paperrock':
-      resultDisplay.innerHTML = 'You chose' + userChoice + 'the computer chose ' + computerChoice + ' , you win'
+      resultDisplay.innerHTML = 'You chose' + playerSelection + 'the computer chose ' + computerSelection + ' , you win'
       break
    case 'paperscissors':
    case 'scissorsrock':
    case 'rockpaper':
-      resultDisplay.innerHTML = 'You chose' + userChoice + 'the computer chose ' + computerChoice + ' , you lose'
+      resultDisplay.innerHTML = 'You chose' + playerSelection + 'the computer chose ' + computerSelection + ' , you lose'
       break
    case 'scissorsscissors':
    case 'rockrock':
    case 'paperpaper':
-      resultDisplay.innerHTML = 'You chose' + userChoice + 'the computer chose ' + computerChoice + ' , draw'
+      resultDisplay.innerHTML = 'You chose' + playerSelection + 'the computer chose ' + computerSelection + ' , draw'
       break
    }   
 }
+const game = () => { 
+   let playerScore = 0; 
+   let computerScore = 0; 
+   for (let i = 0; i < 5; i++) { 
+      const playerSelection = getComputerChoice(); 
+      const computerSelection = getComputerChoice(); 
+      const result = playRound(playerSelection, computerSelection);
+      if (result.includes("win")) { playerScore++; } 
+      else if (result.includes("lose")) { computerScore++; } } 
+      if (playerScore > computerScore) { resultDisplay.innerHTML = "You won the game! Score: " + playerScore + " - " + computerScore; } 
+      else if (playerScore < computerScore) { resultDisplay.innerHTML = "You lost the game. Score: " + playerScore + " - " + computerScore; } 
+      else { resultDisplay.innerHTML = "The game was a draw. Score: " + playerScore + " - " + computerScore; } }
 
-
-// this grabs the result id from index.html
-//This grabs the choices id from index.html
-//Asigns choices as rock, paper and scissors
-
-//this asignes an action for the handleClick
-//result of what user clicks and result of computers random choice using math random
-//Asigns choices as rock, paper and scissors
-
- //this creates a button for the choices
- //grab the button and you html to asign it the choice
-
-//grab the button and add an eventListener to listen 
-//out for a click and then call the handleClick functcion
-//grab choices display and use appendChild button
-// you chose computer choice and computer chose computer choice which means you win
+const playerSelection = "rock";
+const computerSelection = getComputerChoice(); 
+console.log(playRound(playerSelection, computerSelection));
